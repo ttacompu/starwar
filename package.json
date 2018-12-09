@@ -8,6 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "preinstall": "npm install -g @angular/cli @angular/compiler-cli typescript",
     "postinstall": "ng build --aot --prod"
   },
   "private": true,
@@ -28,6 +29,7 @@
     "aspnet-prerendering": "^3.0.1",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
     "jquery": "^3.3.1",
     "ngx-toastr": "^8.10.0",
     "ramda": "^0.25.0",
