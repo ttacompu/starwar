@@ -1,0 +1,6 @@
+  <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let chracter of dataList" >
+        <a class="nav-link" [ngClass]="{active : chracter.active}"  (click)="menuClick($event, chracter )" href="#">{{chracter.name}}</a>
+      </li>
+    </ul>
+

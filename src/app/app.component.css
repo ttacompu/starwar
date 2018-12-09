@@ -1,0 +1,27 @@
+.loading {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+
+.header
+{
+  padding : 20px;
+  font-size: 2em;
+  border-bottom:  1px solid greenyellow;
+}
+
+.content{
+  display: flex;
+  padding : 10xp;
+  margin-top: 20px;
+}
+
+.content .leftMenu{
+  flex-basis: 20%;
+}
+

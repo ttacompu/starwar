@@ -1,0 +1,15 @@
+<div>
+  <div *ngIf="data.movies.length">
+      <div><span class="title">{{data.chracter}}</span> chracter appears in </div>
+      
+        <div *ngFor="let movie of data.movies" class="movieContent">
+            <div>
+                <label>Title :</label>  <span class="title">{{movie.title}} </span> 
+            </div>  
+            <div>
+                <label>Release Date :</label>{{movie.release_date | date:'fullDate'}}
+            </div>
+        </div>
+      
+  </div>
+</div>

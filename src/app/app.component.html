@@ -1,0 +1,16 @@
+<div toastContainer style="position:absolute; top : 60px; right : 400px"></div>
+<div>
+   <div class="loading" [ngStyle]="{'background' : background}" [hidden]="!loading"></div>
+  <div class="appContainer">
+    <div class="header">Choose Your Star War Chracter</div>
+    <div class="content">
+        <div class="leftMenu">
+          <adp-menu (sendUrl)="getContent($event)" [dataList]="chracters"></adp-menu>
+        </div>
+        <div class="rightContent">
+          <adp-content [data]="movieContent"></adp-content>
+        </div>
+    </div>
+    
+  </div>
+</div>
