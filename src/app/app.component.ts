@@ -46,32 +46,17 @@ export class AppComponent implements OnInit {
    this.subscriptions.add(this.httpStatusService.getHttpStatus().subscribe(status => {
       this.loading = status;
     }));
-   this.subscriptions.add( this.store.pipe(select('appState'), map((x:fromApp.AppState)=>x.chracters)).subscribe(
-        results => {
-          if(results.length){
-            this.chracters = results
-          }
-        }
-      ))
-
-      this.subscriptions.add( this.store.pipe(select('appState'), map((x:fromApp.AppState)=>{
-        return {
-          movies : x.movies,
-          currentChracter : x.currentChracter
-        }
-      })).subscribe(
-        data => {
-          this.movieContent.movies = data.movies;
-          this.movieContent.chracter = data.currentChracter
-        }
-      ))
-
-    this.subscriptions.add(this.store.pipe(select('appState'), map((x:fromApp.AppState)=>x.error)).subscribe(error =>{if(error){
-      this.showMessage(error, true)
-    }}));
+   
     this.store.dispatch(new appActions.LoadChracters(this.chracterService.getChracters()))
     
-   
+    this.store.pipe(select('appState')).subscribe((state:fromApp.AppState)=>{
+        this.chracters = state.chracters;
+        this.movieContent.movies = state.movies;
+        this.movieContent.chracter = state.currentChracter;
+        if(state.error){
+            this.showMessage(state.error, true );
+        }
+    })
     
   }
 

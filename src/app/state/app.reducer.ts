@@ -49,7 +49,7 @@ export function reducer( state : AppState = initAppState, action : AppActions ){
             case AppActionTypes.LoadChracterMoviesFail:
             return {
                 ...state,
-                movie : [],
+                movies : [],
                 error : action.payload
             }
 
