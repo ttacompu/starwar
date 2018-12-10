@@ -1,46 +1,46 @@
 import { Action } from '@ngrx/store';
 export enum AppActionTypes {
-       LoadChracters = '[Chracters] loaded',
-       LoadChracterMovies = '[Movies] loading',
-       LoadChracterMoviesSuccess = '[Movies] loading Success',
-       LoadChracterMoviesFail = '[Movies] loading Fail',
-       ChangeActiveChracter = '[Chracters] changed'
+       Loadcharacters = '[characters] loaded',
+       LoadcharacterMovies = '[Movies] loading',
+       LoadcharacterMoviesSuccess = '[Movies] loading Success',
+       LoadcharacterMoviesFail = '[Movies] loading Fail',
+       ChangeActivecharacter = '[characters] changed'
        
 }
 
-export class LoadChracters implements Action{
-    readonly type = AppActionTypes.LoadChracters;
+export class Loadcharacters implements Action{
+    readonly type = AppActionTypes.Loadcharacters;
     constructor(public payload: Array<any>) {
     }
 }
 
-export class LoadChracterMovies implements Action{
-    readonly type = AppActionTypes.LoadChracterMovies;
+export class LoadcharacterMovies implements Action{
+    readonly type = AppActionTypes.LoadcharacterMovies;
     constructor(public payload: any) {
     }
 }
 
-export class LoadChracterMoviesSuccess implements Action{
-    readonly type = AppActionTypes.LoadChracterMoviesSuccess;
+export class LoadcharacterMoviesSuccess implements Action{
+    readonly type = AppActionTypes.LoadcharacterMoviesSuccess;
     constructor(public payload: Array<any>) {
     }
 }
 
-export class LoadChracterMoviesFail implements Action{
-    readonly type = AppActionTypes.LoadChracterMoviesFail;
+export class LoadcharacterMoviesFail implements Action{
+    readonly type = AppActionTypes.LoadcharacterMoviesFail;
     constructor(public payload: any) {
     }
 }
 
 
-export class ChangeChracters implements Action{
-    readonly type = AppActionTypes.ChangeActiveChracter;
+export class Changecharacters implements Action{
+    readonly type = AppActionTypes.ChangeActivecharacter;
     constructor(public payload: any) {
     }
 }
 
-export type AppActions = LoadChracters 
-                        | ChangeChracters
-                        | LoadChracterMovies
-                        | LoadChracterMoviesSuccess
-                        | LoadChracterMoviesFail
+export type AppActions = Loadcharacters 
+                        | Changecharacters
+                        | LoadcharacterMovies
+                        | LoadcharacterMoviesSuccess
+                        | LoadcharacterMoviesFail

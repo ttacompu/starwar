@@ -18,7 +18,7 @@ import { HttpStatusService } from './services/httpStatusService';
 import { WinAuthInterceptor } from './services/winAuthInterceptor';
 
 import {reducer } from './state/app.reducer';
-import { ChracterService } from './services/chracterService';
+import { characterService } from './services/characterService';
 import {AppEffects} from './state/app.effect'
 
 @NgModule({
@@ -48,7 +48,7 @@ import {AppEffects} from './state/app.effect'
       multi: true
     },
       HttpStatusService,
-      ChracterService
+      characterService
   ],
   bootstrap: [AppComponent]
 })

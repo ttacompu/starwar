@@ -2,30 +2,30 @@ import {AppActions, AppActionTypes} from './app.action';
 import { select, createSelector, createFeatureSelector } from '@ngrx/store';
 
 export interface AppState{
-    chracters : Array<any>,
+    characters : Array<any>,
     movies : Array<any>,
-    currentChracter : string,
+    currentcharacter : string,
     error : string
 }
 
 
 const initAppState: AppState = {
-    chracters : [],
+    characters : [],
     movies : [],
-    currentChracter : '',
+    currentcharacter : '',
     error : ''
 }
 
 export function reducer( state : AppState = initAppState, action : AppActions ){
     switch(action.type){
-        case AppActionTypes.LoadChracters:
+        case AppActionTypes.Loadcharacters:
             return {
                 ...state,
-                chracters : action.payload,
+                characters : action.payload,
                 error : ''
             }
-            case AppActionTypes.ChangeActiveChracter:
-              const withActiveChracters  =state.chracters.map((x:any)=>{
+            case AppActionTypes.ChangeActivecharacter:
+              const withActivecharacters  =state.characters.map((x:any)=>{
                     if(x.name === action.payload){
                         x.active = true;
                     }else{
@@ -35,18 +35,18 @@ export function reducer( state : AppState = initAppState, action : AppActions ){
                 })
             return {
                 ...state,
-                chracters : withActiveChracters,
-                currentChracter : action.payload,
+                characters : withActivecharacters,
+                currentcharacter : action.payload,
                 error : ''
             }
-            case AppActionTypes.LoadChracterMoviesSuccess:
+            case AppActionTypes.LoadcharacterMoviesSuccess:
             return {
                 ...state,
                 movies : action.payload,
                 error : ''
             }
 
-            case AppActionTypes.LoadChracterMoviesFail:
+            case AppActionTypes.LoadcharacterMoviesFail:
             return {
                 ...state,
                 movies : [],

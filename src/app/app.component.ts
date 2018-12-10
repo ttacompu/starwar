@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 import * as fromApp from './state/app.reducer';
 import * as appActions from './state/app.action'
 import { Store, select } from '@ngrx/store';
-import { ChracterService } from './services/chracterService';
+import { characterService } from './services/characterService';
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,10 +22,10 @@ export class AppComponent implements OnInit {
   title = 'app';
   loading = true;
   background = `url(${environment.alias}/assets/loading.gif) 50% 50% no-repeat #fff`
-  chracters =[];
+  characters =[];
   movieContent ={
     movies : [],
-    chracter : null
+    character : null
   }
   
    private showMessage(msg, isError = false) {
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
   }
   
 
-  constructor(private toastr: ToastrService, private httpStatusService :HttpStatusService, private chracterService : ChracterService, private store: Store<fromApp.AppState>) {
+  constructor(private toastr: ToastrService, private httpStatusService :HttpStatusService, private characterService : characterService, private store: Store<fromApp.AppState>) {
   }
 
 
@@ -47,12 +47,12 @@ export class AppComponent implements OnInit {
       this.loading = status;
     }));
    
-    this.store.dispatch(new appActions.LoadChracters(this.chracterService.getChracters()))
+    this.store.dispatch(new appActions.Loadcharacters(this.characterService.getcharacters()))
     
     this.store.pipe(select('appState')).subscribe((state:fromApp.AppState)=>{
-        this.chracters = state.chracters;
+        this.characters = state.characters;
         this.movieContent.movies = state.movies;
-        this.movieContent.chracter = state.currentChracter;
+        this.movieContent.character = state.currentcharacter;
         if(state.error){
             this.showMessage(state.error, true );
         }
@@ -62,8 +62,8 @@ export class AppComponent implements OnInit {
 
 
   getContent({name, url}){
-    this.store.dispatch(new appActions.ChangeChracters(name));
-    this.store.dispatch(new appActions.LoadChracterMovies(url))
+    this.store.dispatch(new appActions.Changecharacters(name));
+    this.store.dispatch(new appActions.LoadcharacterMovies(url))
   }
 
   ngOnDestroy(){
