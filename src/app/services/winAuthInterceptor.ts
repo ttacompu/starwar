@@ -23,7 +23,8 @@ export class WinAuthInterceptor implements HttpInterceptor {
           'Content-Type': 'application/json; charset=utf-8'
       })
     })
-    return next.handle(req).pipe(tap(event => { this.httpStatusService.setHttpStatus(true); }), catchError(error => { this.httpStatusService.setHttpStatus(false); return throwError(error) }), 
+    return next.handle(req).pipe(map(event => { this.httpStatusService.setHttpStatus(true); return event; }),
+     catchError(error => { this.httpStatusService.setHttpStatus(false); return throwError(error) }), 
     finalize(() => {
       this.httpStatusService.setHttpStatus(false);
     }));  
