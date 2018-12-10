@@ -14,5 +14,5 @@ export class AppEffects {
   @Effect()
   loadRequest$ = this.actions$.pipe(ofType(appActions.AppActionTypes.LoadChracterMovies), mergeMap((action:appActions.LoadChracterMovies)=>{
     return this.chracterService.getFirmsUrl(action.payload).pipe(map(results => new appActions.LoadChracterMoviesSuccess(results)))
-  }),  catchError(err =>{return  of(new appActions.LoadChracterMoviesFail('error'))} ))
+  }),  catchError(err =>{return  of(new appActions.LoadChracterMoviesFail('network error!'))} ))
 }
