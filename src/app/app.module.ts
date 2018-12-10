@@ -32,9 +32,11 @@ import {AppEffects} from './state/app.effect'
     BrowserAnimationsModule,
     HttpModule,
     HttpClientModule,
-    ToastrModule.forRoot( {positionClass: 'inline',
-    closeButton: true,
-    timeOut : 7000}),
+    ToastrModule.forRoot( 
+      {
+        closeButton: true,
+        timeOut : 7000
+      }),
     ToastContainerModule,
     StoreModule.forRoot({appState : reducer}),
     EffectsModule.forRoot([AppEffects]),
