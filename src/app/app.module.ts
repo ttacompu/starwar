@@ -35,7 +35,7 @@ import {AppEffects} from './state/app.effect'
     ToastrModule.forRoot( 
       {
         closeButton: true,
-        timeOut : 7000
+        timeOut : 1000
       }),
     ToastContainerModule,
     StoreModule.forRoot({appState : reducer}),
