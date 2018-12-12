@@ -50,9 +50,11 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new appActions.Loadcharacters(this.characterService.getcharacters()))
     
     this.store.pipe(select('appState')).subscribe((state:fromApp.AppState)=>{
-        this.characters = state.characters;
-        this.movieContent.movies = state.movies;
-        this.movieContent.character = state.currentcharacter;
+        this.characters = [...state.characters];
+        this.movieContent ={
+          movies : state.movies,
+          character : state.currentcharacter
+        }
         if(state.error){
             this.showMessage(state.error, true );
         }
@@ -64,6 +66,10 @@ export class AppComponent implements OnInit {
   getContent({name, url}){
     this.store.dispatch(new appActions.Changecharacters(name));
     this.store.dispatch(new appActions.LoadcharacterMovies(url))
+  }
+
+  click(){
+    
   }
 
   ngOnDestroy(){
