@@ -1,5 +1,5 @@
 import {AppActions, AppActionTypes} from './app.action';
-import { select, createSelector, createFeatureSelector } from '@ngrx/store';
+import { createSelector } from '@ngrx/store';
 
 export interface AppState{
     characters : Array<any>,
@@ -15,6 +15,12 @@ const initAppState: AppState = {
     currentcharacter : '',
     error : ''
 }
+
+const getAppState = ((x:any) => x.appState );
+export const getCharacters = createSelector(getAppState, (state:AppState)=> state.characters);
+export const getMovies = createSelector(getAppState, (state:AppState)=> state.movies);
+export const getCurrentCharacter = createSelector(getAppState, (state:AppState)=> state.currentcharacter);
+export const getError =createSelector(getAppState, (state:AppState)=> state.error)
 
 export function reducer( state : AppState = initAppState, action : AppActions ){
     switch(action.type){

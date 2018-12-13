@@ -1,4 +1,4 @@
-import { TestBed, async } from '@angular/core/testing';
+/*import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -24,4 +24,16 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Welcome to app!');
   }));
-});
+});*/
+describe('my first test', ()=>{
+  let sut;
+  beforeEach(()=>{
+    sut ={};
+  })
+  it('should be true if true', ()=>{
+    sut.a = false;
+    sut.a = true;
+    expect(sut.a).toBe(true);
+
+  })
+})

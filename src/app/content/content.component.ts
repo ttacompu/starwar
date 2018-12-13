@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { getCurrentCharacter } from '../state/app.reducer';
 
 
 
@@ -12,7 +13,10 @@ import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core
 export class ContentComponent implements OnInit {
 
   @Input()
-  data;
+  movies;
+
+  @Input()
+  currentCharacter;
   
   ngOnInit() {
     

@@ -1,8 +1,8 @@
 <div>
-  <div *ngIf="data.movies.length">
-      <div><span class="title">{{data.character}}</span> character appears in </div>
+  <div *ngIf="movies.length">
+      <div><span class="title">{{currentCharacter}}</span> character appears in </div>
       
-        <div *ngFor="let movie of data.movies" class="movieContent">
+        <div *ngFor="let movie of movies" class="movieContent">
             <div>
                 <label>Title :</label>  <span class="title">{{movie.title}} </span> 
             </div>  

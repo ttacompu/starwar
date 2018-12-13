@@ -23,10 +23,9 @@ export class AppComponent implements OnInit {
   loading = true;
   background = `url(${environment.alias}/assets/loading.gif) 50% 50% no-repeat #fff`
   characters =[];
-  movieContent ={
-    movies : [],
-    character : null
-  }
+  currentCharacter="";
+  movies =[];
+  
   
    private showMessage(msg, isError = false) {
     if (isError) {
@@ -48,28 +47,20 @@ export class AppComponent implements OnInit {
     }));
    
     this.store.dispatch(new appActions.Loadcharacters(this.characterService.getcharacters()))
-    
-    this.store.pipe(select('appState')).subscribe((state:fromApp.AppState)=>{
-        this.characters = [...state.characters];
-        this.movieContent ={
-          movies : state.movies,
-          character : state.currentcharacter
-        }
-        if(state.error){
-            this.showMessage(state.error, true );
-        }
-    })
-    
-  }
 
+  this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
+    this.subscriptions.add(this.store.select(fromApp.getCurrentCharacter).subscribe(currentCharacter => this.currentCharacter = currentCharacter));
+    this.subscriptions.add(this.store.select(fromApp.getMovies).subscribe(movies => this.movies = movies));
+    this.subscriptions.add(this.store.select(fromApp.getError).subscribe(err => {
+          if(err){
+            this.showMessage(err, true);
+          }
+    }));
+  }
 
   getContent({name, url}){
     this.store.dispatch(new appActions.Changecharacters(name));
     this.store.dispatch(new appActions.LoadcharacterMovies(url))
-  }
-
-  click(){
-    
   }
 
   ngOnDestroy(){
