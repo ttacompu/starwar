@@ -30,7 +30,6 @@ import {AppEffects} from './state/app.effect'
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
-    HttpModule,
     HttpClientModule,
     ToastrModule.forRoot( 
       {

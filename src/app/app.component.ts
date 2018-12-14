@@ -18,8 +18,7 @@ import { map } from 'rxjs/operators';
 export class AppComponent implements OnInit {
   @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
   subscriptions:Subscription = new Subscription();
-
-  title = 'app';
+  
   loading = true;
   background = `url(${environment.alias}/assets/loading.gif) 50% 50% no-repeat #fff`
   characters =[];
