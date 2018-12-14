@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
     this.subscriptions.add(this.store.select(fromApp.getError).subscribe(err => {
           if(err){
             this.showMessage(err, true);
+            console.log(err);
           }
     }));
   }
