@@ -30,10 +30,24 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
- /* it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
+
+  it('should assgin to component state variabls', ()=>{
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.loading = true;
+    fixture.componentInstance.background ='red';
+    fixture.componentInstance.characters = [{name : 'obi'}];
+    fixture.componentInstance.currentCharacter = 'obi';
+    fixture.componentInstance.movies = [{ name : 'starwar'}];
+    expect(fixture.componentInstance.loading).toEqual(true);
+    expect(fixture.componentInstance.background).toEqual('red');
+
+  })
+  /*it(`should have chosen character name`, async(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    fixture.componentInstance.currentCharacter = 'obi';
+    fixture.detectChanges();
+    const character=fixture.nativeElement.querySelector('.title');
+    expect(character.textContent).toContain('obi');
   }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
