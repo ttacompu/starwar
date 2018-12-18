@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
-import { characterService } from "../services/characterService";
+import { CharacterService } from "../services/characterService";
 import * as fromApp from './app.reducer';
 import * as appActions from './app.action'
 import { mergeMap, map, catchError, tap, switchMap } from "rxjs/operators";
@@ -8,7 +8,7 @@ import { of, throwError } from "rxjs";
 
 @Injectable()
 export class AppEffects {
-  constructor(private actions$: Actions, private characterService: characterService) {
+  constructor(private actions$: Actions, private characterService: CharacterService) {
   }
 
   @Effect()

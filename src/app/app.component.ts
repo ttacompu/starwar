@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 import * as fromApp from './state/app.reducer';
 import * as appActions from './state/app.action'
 import { Store, select } from '@ngrx/store';
-import { characterService } from './services/characterService';
+import { CharacterService } from './services/characterService';
 import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
   }
   
 
-  constructor(private toastr: ToastrService, private httpStatusService :HttpStatusService, private characterService : characterService, private store: Store<fromApp.AppState>) {
+  constructor(private toastr: ToastrService, private httpStatusService :HttpStatusService, private characterService : CharacterService, private store: Store<fromApp.AppState>) {
   }
 
 
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       this.loading = status;
     }));
    
-    this.store.dispatch(new appActions.Loadcharacters(this.characterService.getcharacters()))
+    this.store.dispatch(new appActions.Loadcharacters(this.characterService.getCharacters()))
 
   this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
     this.subscriptions.add(this.store.select(fromApp.getCurrentCharacter).subscribe(currentCharacter => this.currentCharacter = currentCharacter));

@@ -5,11 +5,11 @@ import { forkJoin, of, throwError } from "rxjs";
 import * as R from 'ramda';
 
 @Injectable()
-export class characterService {
+export class CharacterService {
   constructor(private http_: HttpClient) {
     //this.getUserInfo();
   }
-    getcharacters(){
+    getCharacters(){
         return [{
             "name": "Luke Skywalker",
             "url": "https://swapi.co/api/people/1/"
