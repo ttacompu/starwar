@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   subscriptions:Subscription = new Subscription();
   
   loading = true;
-  background = `url(${environment.alias}/assets/loading.gif) 50% 50% no-repeat #fff`
+  background = `url(/assets/loading.gif) 50% 50% no-repeat #fff`
   characters =[];
   currentCharacter="";
   movies =[];
