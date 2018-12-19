@@ -44,8 +44,10 @@ export class AppComponent implements OnInit {
    this.subscriptions.add(this.httpStatusService.getHttpStatus().subscribe(status => {
       this.loading = status;
     }));
-   
-    this.store.dispatch(new appActions.Loadcharacters(this.characterService.getCharacters()))
+
+    this.characterService.getCharacters().subscribe(chars =>{
+      this.store.dispatch(new appActions.Loadcharacters(chars))
+    })
 
   this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
     this.subscriptions.add(this.store.select(fromApp.getCurrentCharacter).subscribe(currentCharacter => this.currentCharacter = currentCharacter));

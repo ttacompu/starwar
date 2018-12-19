@@ -10,7 +10,7 @@ export class CharacterService {
     //this.getUserInfo();
   }
     getCharacters(){
-        return [{
+        return of(  [{
             "name": "Luke Skywalker",
             "url": "https://swapi.co/api/people/1/"
           },
@@ -25,7 +25,7 @@ export class CharacterService {
           {
             "name": "R2-D2",
             "url": "https://swapi.co/api/people/3/"
-          }];
+          }]);
     }
 
 
