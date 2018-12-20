@@ -64,7 +64,7 @@ describe('AppComponent', () => {
   }))
 
   it(`should spinner should hide`, async(() => {
-    mockHttpStatusService.getHttpStatus.and.returnValue(of(false));
+    mockHttpStatusService.getHttpStatus.and.returnValue(of(true,false));
     mockStoreService.select.and.returnValue(of({}));
     fixture = TestBed.createComponent(AppComponent);
     fixture.componentInstance.loading = true;
@@ -75,7 +75,7 @@ describe('AppComponent', () => {
 
   }));
   it('should spinner div background has loading gif ', async(() => {
-    mockHttpStatusService.getHttpStatus.and.returnValue(of(false));
+    mockHttpStatusService.getHttpStatus.and.returnValue(of(true, false));
     mockStoreService.select.and.returnValue(of({}));
     fixture = TestBed.createComponent(AppComponent);
     fixture.componentInstance.loading = true;
