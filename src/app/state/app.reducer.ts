@@ -1,5 +1,5 @@
-import {AppActions, AppActionTypes} from './app.action';
 import { createSelector } from '@ngrx/store';
+import * as CONSTANTS from './app.action.constant';
 
 export interface AppState{
     characters : Array<any>,
@@ -22,15 +22,15 @@ export const getMovies = createSelector(getAppState, (state:AppState)=> state.mo
 export const getCurrentCharacter = createSelector(getAppState, (state:AppState)=> state.currentcharacter);
 export const getError =createSelector(getAppState, (state:AppState)=> state.error)
 
-export function reducer( state : AppState = initAppState, action : AppActions ){
+export function reducer( state : AppState = initAppState, action ){
     switch(action.type){
-        case AppActionTypes.Loadcharacters:
+        case CONSTANTS.LOADCHARACTERS:
             return {
                 ...state,
                 characters : action.payload,
                 error : ''
             }
-            case AppActionTypes.ChangeActivecharacter:
+            case CONSTANTS.CHANGEACTIVECHARACTER:
               const withActivecharacters  =state.characters.map((x:any)=>{
                     if(x.name === action.payload){
                         x.active = true;
@@ -45,14 +45,14 @@ export function reducer( state : AppState = initAppState, action : AppActions ){
                 currentcharacter : action.payload,
                 error : ''
             }
-            case AppActionTypes.LoadcharacterMoviesSuccess:
+            case CONSTANTS.LOADCHARACTERMOVIESSUCCESS:
             return {
                 ...state,
                 movies : action.payload,
                 error : ''
             }
 
-            case AppActionTypes.LoadcharacterMoviesFail:
+            case CONSTANTS.LOADCHARACTERMOVIESFAIL:
             return {
                 ...state,
                 movies : [],

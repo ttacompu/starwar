@@ -38,15 +38,14 @@ export class AppComponent implements OnInit {
   constructor(private toastr: ToastrService, private httpStatusService :HttpStatusService, private characterService : CharacterService, private store: Store<fromApp.AppState>) {
   }
 
-
-
   ngOnInit() {
    this.subscriptions.add(this.httpStatusService.getHttpStatus().subscribe(status => {
       this.loading = status;
+
     }));
 
     this.characterService.getCharacters().subscribe(chars =>{
-      this.store.dispatch(new appActions.Loadcharacters(chars))
+      this.store.dispatch(appActions.loadCharacterAction(chars))
     })
 
   this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
@@ -61,8 +60,8 @@ export class AppComponent implements OnInit {
   }
 
   getContent({name, url}){
-    this.store.dispatch(new appActions.Changecharacters(name));
-    this.store.dispatch(new appActions.LoadcharacterMovies(url))
+    this.store.dispatch(appActions.changeCharactersAction(name));
+    this.store.dispatch(appActions.loadCharacterMoviesAction(url))
   }
 
   ngOnDestroy(){

@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { CharacterService } from "../services/characterService";
 import * as fromApp from './app.reducer';
-import * as appActions from './app.action'
+import { loadCharacterMovieSucessAction, loadCharacterMovieFailAction} from './app.action'
+import *  as CONSTANTS from './app.action.constant'
 import { mergeMap, map, catchError, tap, switchMap } from "rxjs/operators";
 import { of, throwError } from "rxjs";
 
@@ -12,8 +13,10 @@ export class AppEffects {
   }
 
   @Effect()
-  loadRequest$ = this.actions$.pipe(ofType(appActions.AppActionTypes.LoadcharacterMovies), switchMap((action:appActions.LoadcharacterMovies)=>{
+  loadRequest$ = this.actions$.pipe(ofType(CONSTANTS.LOADCHARACTERMOVIES), switchMap((action:any)=>{
     return this.characterService.getFirmsUrl(action.payload)
-    .pipe(map(results => new appActions.LoadcharacterMoviesSuccess(results)), catchError(err =>{return  of(new appActions.LoadcharacterMoviesFail('network error!'))} ))
+    .pipe(map(loadCharacterMovieSucessAction), catchError( err => of(loadCharacterMovieFailAction("network error!"))  ))
   }))
+
+  
 }

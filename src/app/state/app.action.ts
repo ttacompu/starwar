@@ -1,46 +1,10 @@
 import { Action } from '@ngrx/store';
-export enum AppActionTypes {
-       Loadcharacters = '[characters] loaded',
-       LoadcharacterMovies = '[Movies] loading',
-       LoadcharacterMoviesSuccess = '[Movies] loading Success',
-       LoadcharacterMoviesFail = '[Movies] loading Fail',
-       ChangeActivecharacter = '[characters] changed'
-       
-}
+import * as CONSTANTS from './app.action.constant'
 
-export class Loadcharacters implements Action{
-    readonly type = AppActionTypes.Loadcharacters;
-    constructor(public payload: Array<any>) {
-    }
-}
-
-export class LoadcharacterMovies implements Action{
-    readonly type = AppActionTypes.LoadcharacterMovies;
-    constructor(public payload: any) {
-    }
-}
-
-export class LoadcharacterMoviesSuccess implements Action{
-    readonly type = AppActionTypes.LoadcharacterMoviesSuccess;
-    constructor(public payload: Array<any>) {
-    }
-}
-
-export class LoadcharacterMoviesFail implements Action{
-    readonly type = AppActionTypes.LoadcharacterMoviesFail;
-    constructor(public payload: any) {
-    }
-}
-
-
-export class Changecharacters implements Action{
-    readonly type = AppActionTypes.ChangeActivecharacter;
-    constructor(public payload: any) {
-    }
-}
-
-export type AppActions = Loadcharacters 
-                        | Changecharacters
-                        | LoadcharacterMovies
-                        | LoadcharacterMoviesSuccess
-                        | LoadcharacterMoviesFail
+const loadCharacterAction :any = (payload) => ({type: CONSTANTS.LOADCHARACTERS, payload});
+const loadCharacterMoviesAction : any = (payload) => ({type : CONSTANTS.LOADCHARACTERMOVIES, payload});
+const loadCharacterMovieSucessAction : any = (payload) => ({type : CONSTANTS.LOADCHARACTERMOVIESSUCCESS, payload});
+const loadCharacterMovieFailAction : any = (payload) => ({type : CONSTANTS.LOADCHARACTERMOVIESFAIL, payload});
+const changeCharactersAction : any = (payload) => ({type : CONSTANTS.CHANGEACTIVECHARACTER, payload});
+export {loadCharacterAction,loadCharacterMoviesAction,loadCharacterMovieSucessAction,
+    loadCharacterMovieFailAction, changeCharactersAction };
