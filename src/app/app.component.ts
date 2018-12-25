@@ -17,56 +17,58 @@ import { map } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
-  subscriptions:Subscription = new Subscription();
-  
+  subscriptions: Subscription = new Subscription();
+
   loading = true;
   background = `url(/assets/loading.gif) 50% 50% no-repeat #fff`
-  characters =[];
-  currentCharacter="";
-  movies =[];
-  
-  
-   private showMessage(msg, isError = false) {
-    if (isError) {
-      this.toastr.error(msg);
-    } else {
-      this.toastr.success(msg);
-    }
-  }
-  
+  characters = [];
+  currentCharacter = "";
+  movies = [];
 
-  constructor(private toastr: ToastrService, private httpStatusService :HttpStatusService, private characterService : CharacterService, private store: Store<fromApp.AppState>) {
+
+  private showMessage(msg, isError = false) {
+    setTimeout(() => {
+      if (isError) {
+        this.toastr.error(msg);
+      } else {
+        this.toastr.success(msg);
+      }
+    })
+  }
+
+
+  constructor(private toastr: ToastrService, private httpStatusService: HttpStatusService, private characterService: CharacterService, private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
-   this.subscriptions.add(this.httpStatusService.getHttpStatus().subscribe(status => {
+    this.subscriptions.add(this.httpStatusService.getHttpStatus().subscribe(status => {
       this.loading = status;
 
     }));
 
-    this.characterService.getCharacters().subscribe(chars =>{
+    this.characterService.getCharacters().subscribe(chars => {
       this.store.dispatch(appActions.loadCharacterAction(chars))
     })
 
-  this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
+    this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
     this.subscriptions.add(this.store.select(fromApp.getCurrentCharacter).subscribe(currentCharacter => this.currentCharacter = currentCharacter));
     this.subscriptions.add(this.store.select(fromApp.getMovies).subscribe(movies => this.movies = movies));
     this.subscriptions.add(this.store.select(fromApp.getError).subscribe(err => {
-          if(err){
-            this.showMessage(err, true);
-        
-          }
+      if (err) {
+        this.showMessage(err, true);
+
+      }
     }));
   }
 
-  getContent({name, url}){
+  getContent({ name, url }) {
     this.store.dispatch(appActions.changeCharactersAction(name));
     this.store.dispatch(appActions.loadCharacterMoviesAction(url))
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
 
- 
+
 }
