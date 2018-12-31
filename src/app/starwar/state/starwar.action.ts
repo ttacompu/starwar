@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import * as CONSTANTS from './app.action.constant'
+import * as CONSTANTS from './starwar.constants'
 
 const loadCharacterAction :any = (payload) => ({type: CONSTANTS.LOADCHARACTERS, payload});
 const loadCharacterMoviesAction : any = (payload) => ({type : CONSTANTS.LOADCHARACTERMOVIES, payload});

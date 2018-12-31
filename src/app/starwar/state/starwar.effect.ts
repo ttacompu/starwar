@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, Effect, ofType } from "@ngrx/effects";
-import { CharacterService } from "../services/characterService";
-import * as fromApp from './app.reducer';
-import { loadCharacterMovieSucessAction, loadCharacterMovieFailAction} from './app.action'
-import *  as CONSTANTS from './app.action.constant'
+import { CharacterService } from "../../services/characterService";
+import { loadCharacterMovieSucessAction, loadCharacterMovieFailAction} from './starwar.action'
+import *  as CONSTANTS from './starwar.constants'
 import { mergeMap, map, catchError, tap, switchMap } from "rxjs/operators";
 import { of, throwError } from "rxjs";
 

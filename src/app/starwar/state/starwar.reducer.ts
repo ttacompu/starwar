@@ -1,28 +1,8 @@
-import { createSelector } from '@ngrx/store';
-import * as CONSTANTS from './app.action.constant';
+import {StarwarState} from './starwar.state';
+import * as CONSTANTS  from './starwar.constants';
+import { ActionReducerMap } from '@ngrx/store';
 
-export interface AppState{
-    characters : Array<any>,
-    movies : Array<any>,
-    currentcharacter : string,
-    error : string
-}
-
-
-const initAppState: AppState = {
-    characters : [],
-    movies : [],
-    currentcharacter : '',
-    error : ''
-}
-
-const getAppState = ((x:any) => x.appState );
-export const getCharacters = createSelector(getAppState, (state:AppState)=> state.characters);
-export const getMovies = createSelector(getAppState, (state:AppState)=> state.movies);
-export const getCurrentCharacter = createSelector(getAppState, (state:AppState)=> state.currentcharacter);
-export const getError =createSelector(getAppState, (state:AppState)=> state.error)
-
-export function reducer( state : AppState = initAppState, action ){
+export function starwarReducer(state , action ){
     switch(action.type){
         case CONSTANTS.LOADCHARACTERS:
             return {
@@ -62,4 +42,9 @@ export function reducer( state : AppState = initAppState, action ){
         default : 
             return state;
     }
+}
+
+
+export const reducers : ActionReducerMap<StarwarState> = {
+    Starwar : starwarReducer
 }
