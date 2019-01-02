@@ -1,5 +1,5 @@
 <div>
-  <div *ngIf="movies.length">
+  <div *ngIf="movies?.length">
       <div><span class="title">{{currentCharacter}}</span> character appears in </div>
       
         <div *ngFor="let movie of movies" class="movieContent">

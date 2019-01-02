@@ -1,7 +1,4 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { getCurrentCharacter } from '../state/app.reducer';
-
-
 
 
 @Component({

@@ -8,37 +8,34 @@ import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
 
 /* Component sections*/ 
 import { AppComponent } from './app.component';
-import {MenuComponent} from './menu/menu.component'
-import { ContentComponent } from './content/content.component';
+
 
 /* ngRx*/
 import { StoreModule } from '@ngrx/store'
-import { EffectsModule } from '@ngrx/effects';
 import { HttpStatusService } from './services/httpStatusService';
 import { WinAuthInterceptor } from './services/winAuthInterceptor';
-
-import {reducer } from './state/app.reducer';
 import { CharacterService } from './services/characterService';
-import {AppEffects} from './state/app.effect'
+import { StarwarModule } from './starwar/starwar.module';
+import { EffectsModule } from '@ngrx/effects';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuComponent,
-    ContentComponent
+    AppComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     BrowserAnimationsModule,
     HttpClientModule,
+    StarwarModule,
     ToastrModule.forRoot( 
       {
         closeButton: true,
         timeOut : 1000
       }),
     ToastContainerModule,
-    StoreModule.forRoot({appState : reducer}),
-    EffectsModule.forRoot([AppEffects]),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([])
   ],
   providers: [
     {
