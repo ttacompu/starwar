@@ -1,10 +1,24 @@
-import {StarwarState} from './starwar.state';
+import {StarwarState, StarwarListState } from './starwar.state';
 import * as CONSTANTS  from './starwar.constants';
 import { ActionReducerMap } from '@ngrx/store';
 
-export function starwarReducer(state , action ){
+const initState : StarwarListState ={
+    loading : false,
+    characters : [],
+    movies : [],
+    currentcharacter : '',
+    error : '',
+
+}
+
+export function starwarReducer(state = initState , action ) : StarwarListState{
     switch(action.type){
-        case CONSTANTS.LOADCHARACTERS:
+        case CONSTANTS.LOADINGSUCCESS:
+        return {
+            ...state,
+            loading : action.payload
+        }
+        case CONSTANTS.LOADCHARACTERSSUCCESS:
             return {
                 ...state,
                 characters : action.payload,

@@ -19,7 +19,7 @@ export class StarwarListComponent implements OnInit {
   @ViewChild(ToastContainerDirective) toastContainer: ToastContainerDirective;
   subscriptions: Subscription = new Subscription();
 
-  loading = true;
+  loading = false;
   background = `url(/assets/loading.gif) 50% 50% no-repeat #fff`
   characters = [];
   currentCharacter = "";
@@ -37,37 +37,30 @@ export class StarwarListComponent implements OnInit {
   }
 
 
-  constructor(private toastr: ToastrService, private httpStatusService: HttpStatusService, 
+  constructor(private toastr: ToastrService, 
     private characterService: CharacterService, private store: Store<AppState>) {
   }
 
   ngOnInit() {
-    this.subscriptions.add(this.httpStatusService.getHttpStatus().subscribe(status => {
-      this.loading = status;
+    
+    this.store.dispatch(appActions.loadStatusAction());
+    this.store.dispatch(appActions.loadCharacterAction());
 
+    
+    this.subscriptions.add(this.store.select(selectors.getCharacters).subscribe(chracters => this.characters = chracters));
+    this.subscriptions.add(this.store.select(selectors.getCurrentChracter).subscribe(currentCharacter => this.currentCharacter = currentCharacter));
+    this.subscriptions.add(this.store.select(selectors.getMovies).subscribe( movies => this.movies = movies));
+    this.subscriptions.add(this.store.select(selectors.getStatus).subscribe( loading => this.loading = loading));
+    this.subscriptions.add(this.store.select(selectors.getCharacters).subscribe( characters => this.characters = characters));
+
+
+    this.subscriptions.add(this.store.select(selectors.getError).subscribe(err =>{
+      if (err) {
+        this.showMessage(err, true);
+      }
     }));
 
-    this.characterService.getCharacters().subscribe(chars => {
-      this.store.dispatch(appActions.loadCharacterAction(chars))
-    })
-    this.store.select(selectors.getCharacters).subscribe(chracters => this.characters = chracters);
-    this.store.select(selectors.getCurrentChracter).subscribe(currentCharacter => this.currentCharacter = currentCharacter);
-    this.store.select(selectors.getMovies).subscribe( movies => this.movies = movies);
-    this.store.select(selectors.getError).subscribe(err =>{
-      if (err) {
-        this.showMessage(err, true);
-      }
-    });
-
-   /* this.subscriptions.add(this.store.select(fromApp.getCharacters).subscribe(chracters => this.characters = chracters));
-    this.subscriptions.add(this.store.select(fromApp.getCurrentCharacter).subscribe(currentCharacter => this.currentCharacter = currentCharacter));
-    this.subscriptions.add(this.store.select(fromApp.getMovies).subscribe(movies => this.movies = movies));
-    this.subscriptions.add(this.store.select(fromApp.getError).subscribe(err => {
-      if (err) {
-        this.showMessage(err, true);
-
-      }
-    }));*/
+   
   }
 
   getContent({ name, url }) {
